@@ -1,0 +1,8 @@
+# Ignore metadata setting vscode files
+.metadata
+.settings
+.vscode
+report	
+reports
+test-output
+target
