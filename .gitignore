@@ -2,7 +2,9 @@
 .metadata
 .settings
 .vscode
-report	
-reports
-test-output
-target
+report/
+reports/
+test-output/
+target/
+logs/
+logs/prints.log
