@@ -11,6 +11,7 @@ import org.openqa.selenium.OutputType;
 import org.openqa.selenium.TakesScreenshot;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.ie.InternetExplorerDriver;
 
@@ -22,8 +23,9 @@ import io.github.bonigarcia.wdm.WebDriverManager;
 public class base {
 
     // Class Variable
-    public  WebDriver driver;
-    public Properties properties; 
+    public WebDriver driver;
+    public Properties properties;
+
     // Class Methods
     public WebDriver initalizeDriver() throws IOException {
         properties = new Properties();
@@ -33,11 +35,15 @@ public class base {
         properties.load(fis);
         String browserName = properties.getProperty("browser");
         System.out.println("." + browserName + ".");
-        
+
         if (browserName.equals("chrome")) {
             // Initialize chrome browser
             WebDriverManager.chromedriver().setup();
-            driver = new ChromeDriver();
+            ChromeOptions options = new ChromeOptions();
+            options.addArguments("--no-sandbox");
+            options.addArguments("--disable-dev-shm-usage");
+            options.addArguments("--headless");
+            driver = new ChromeDriver(options);
         } else if (browserName.equals("firefox")) {
             // Initialize Firefox browser
             driver = new FirefoxDriver();
@@ -45,7 +51,7 @@ public class base {
             // Initialize IE browser
             driver = new InternetExplorerDriver();
         }
-        //Implicit wait
+        // Implicit wait
         driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
         return driver;
     }
@@ -53,7 +59,7 @@ public class base {
     public String getScreenshot(String testName, WebDriver driver) throws IOException {
         TakesScreenshot ts = (TakesScreenshot) driver;
         File source = ts.getScreenshotAs(OutputType.FILE);
-        String destinationPath= System.getProperty("user.dir")+"\\report\\"+testName+".png";
+        String destinationPath = System.getProperty("user.dir") + "\\report\\" + testName + ".png";
         File destinationFile = new File(destinationPath);
         FileUtils.copyFile(source, destinationFile);
         return destinationPath;
