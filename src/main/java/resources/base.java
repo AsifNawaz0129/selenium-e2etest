@@ -22,8 +22,8 @@ import io.github.bonigarcia.wdm.WebDriverManager;
 public class base {
 
     // Class Variable
-    public static WebDriver driver;
-    protected Properties properties; 
+    public  WebDriver driver;
+    public Properties properties; 
     // Class Methods
     public WebDriver initalizeDriver() throws IOException {
         properties = new Properties();

@@ -3,9 +3,15 @@
 
 <suite name="Swag Labs Tests" >
   <listeners> <listener class-name="seleniumProject.Listeners"></listener></listeners>
-    <test name="Test" >
+   <test name="Validating login Test" >
       <classes>
         <class name="seleniumProject.HomePage"/>
+      </classes>
+    </test> 
+            
+    <test name="Validating Cart Test" >
+      <classes>
+        <class name="seleniumProject.CartTest"/>
       </classes>
     </test>
   </suite>

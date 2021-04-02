@@ -16,8 +16,10 @@ public class LandingPage {
     By usernameField = By.cssSelector("input[id='user-name']");
     By passField = By.cssSelector("input[id='password']");
 
-    public WebElement getLoginButton(){
-        return driver.findElement(loginButton);
+    public  MainPage getLoginButton() {
+        driver.findElement(loginButton).click();
+        MainPage mainPage = new MainPage(driver);
+        return mainPage;
     }
     public WebElement getusernameField(){
         return driver.findElement(usernameField);
