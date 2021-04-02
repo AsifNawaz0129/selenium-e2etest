@@ -29,7 +29,7 @@ public class base {
     // Class Methods
     public WebDriver initalizeDriver() throws IOException {
         properties = new Properties();
-        String path = (System.getProperty("user.dir") + "\\src\\main\\java\\resources\\data.properties");
+        String path = (System.getProperty("user.dir") + "//src//main//java//resources//data.properties");
         System.out.println(path);
         FileInputStream fis = new FileInputStream(path);
         properties.load(fis);
