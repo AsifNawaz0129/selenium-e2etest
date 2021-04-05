@@ -47,8 +47,8 @@ public class Listeners extends base implements ITestListener {
     @Override
     public void onFinish(final ITestContext context) {
         extent.flush();
-        SendReport sendReport = new SendReport();
-        sendReport.sendEmail();
+        //SendReport sendReport = new SendReport();
+        //sendReport.sendEmail();
     }
 
     @Override

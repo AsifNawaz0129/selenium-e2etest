@@ -34,7 +34,7 @@ public class SendReport {
         Session session = Session.getDefaultInstance(props,
                 new javax.mail.Authenticator() {
                     protected PasswordAuthentication getPasswordAuthentication() {
-                        return new PasswordAuthentication("asif.nawaz.fast@gmail.com", "Virus0129");
+                        return new PasswordAuthentication("asif.nawaz.fast@gmail.com", "");
                     }
                 });
         try {
@@ -53,7 +53,7 @@ public class SendReport {
             // Create another object to add another content
             MimeBodyPart messageBodyPart2 = new MimeBodyPart();
             // Mention the file which you want to send
-            String filename = System.getProperty("user.dir")+"\\reports\\index.html";
+            String filename = System.getProperty("user.dir")+"//reports//index.html";
             // Create data source and pass the filename
             DataSource source = new FileDataSource(filename);
             // set the handler
