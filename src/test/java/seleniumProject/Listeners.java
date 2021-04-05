@@ -11,6 +11,7 @@ import com.aventstack.extentreports.ExtentReports;
 import com.aventstack.extentreports.ExtentTest;
 import com.aventstack.extentreports.Status;
 
+import resources.SendReport;
 import resources.base;
 import resources.extentReporterNG;
 
@@ -45,7 +46,9 @@ public class Listeners extends base implements ITestListener {
 
     @Override
     public void onFinish(final ITestContext context) {
-    	extent.flush();
+        extent.flush();
+        SendReport sendReport = new SendReport();
+        sendReport.sendEmail();
     }
 
     @Override
