@@ -9,7 +9,9 @@ import org.apache.logging.log4j.Logger;
 import org.openqa.selenium.WebDriver;
 //import org.openqa.selenium.WebDriver;
 import org.testng.Assert;
+import org.testng.annotations.AfterClass;
 import org.testng.annotations.AfterTest;
+import org.testng.annotations.BeforeClass;
 import org.testng.annotations.BeforeTest;
 import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
@@ -24,7 +26,7 @@ public class HomePage extends base {
     public  WebDriver driver;
     MainPage mainpage;
 
-    @BeforeTest
+    @BeforeClass
     public void initializeDriver() throws IOException {
         System.out.println(base.class.getName());
         driver = initalizeDriver();
@@ -83,7 +85,7 @@ public class HomePage extends base {
         mainPage.getLogoutButton().click();
     }
 
-    @AfterTest
+    @AfterClass
     public void quitTest() throws IOException {
         driver.close();
     }
@@ -92,7 +94,7 @@ public class HomePage extends base {
     public Object[][] DataProvider() {
         Object[][] data = new Object[1][2];
         data[0][0] = "standard_user";
-        data[0][1] = "secret_sauce";
+        data[0][1] = "secret_sadasdauce";
         return data;
     }
 }

@@ -42,7 +42,7 @@ public class base {
             ChromeOptions options = new ChromeOptions();
             options.addArguments("--no-sandbox");
             options.addArguments("--disable-dev-shm-usage");
-            options.addArguments("--headless");
+            // options.addArguments("--headless");
             driver = new ChromeDriver(options);
         } else if (browserName.equals("firefox")) {
             // Initialize Firefox browser
@@ -59,9 +59,34 @@ public class base {
     public String getScreenshot(String testName, WebDriver driver) throws IOException {
         TakesScreenshot ts = (TakesScreenshot) driver;
         File source = ts.getScreenshotAs(OutputType.FILE);
-        String destinationPath = System.getProperty("user.dir") + "\\report\\" + testName + ".png";
+        String destinationPath = System.getProperty("user.dir") + "\\screenshot\\" + testName + ".png";
         File destinationFile = new File(destinationPath);
         FileUtils.copyFile(source, destinationFile);
         return destinationPath;
     }
+    public static void createDirectory(String directoryName){
+		System.out.println("path to create a directory: ");
+		String path = System.getProperty("user.dir")+"\\"+directoryName;
+		//Creating a File object
+		File file = new File(path);
+		//Creating the directory
+		if(!file.exists()){
+			boolean bool = file.mkdir();
+			if(bool){
+				System.out.println("Directory created successfully");
+			}
+			else{
+				System.out.println("Sorry couldn’t create specified directory");
+			}
+		}
+		else{
+			System.out.println("Directory Exist");
+			String[]entries = file.list();
+			for(String s: entries){
+				File currentFile = new File(file.getPath(),s);
+				currentFile.delete();
+			}
+
+		}
+	}
 }

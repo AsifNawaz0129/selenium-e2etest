@@ -7,4 +7,5 @@ reports/
 test-output/
 target/
 logs/
+screenshot/
 logs/prints.log
