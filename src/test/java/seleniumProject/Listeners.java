@@ -11,7 +11,7 @@ import com.aventstack.extentreports.ExtentReports;
 import com.aventstack.extentreports.ExtentTest;
 import com.aventstack.extentreports.Status;
 
-import resources.SendReport;
+//import resources.SendReport;
 import resources.base;
 import resources.extentReporterNG;
 
@@ -80,7 +80,6 @@ public class Listeners extends base implements ITestListener {
 			test.addScreenCaptureFromPath(getScreenshot(testName, driver), testName);
 			
 		} catch (IOException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
     }			
