@@ -5,6 +5,7 @@
   <listeners> <listener class-name="seleniumProject.Listeners"></listener></listeners>
    <test name="E2E Test" >
       <classes>
+        <class name="seleniumProject.checkURLTest"/>
         <class name="seleniumProject.HomePage"/>
         <class name="seleniumProject.CartTest"/>
       </classes>

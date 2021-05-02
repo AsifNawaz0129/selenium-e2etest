@@ -94,7 +94,7 @@ public class HomePage extends base {
     public Object[][] DataProvider() {
         Object[][] data = new Object[1][2];
         data[0][0] = "standard_user";
-        data[0][1] = "secret_sadasdauce";
+        data[0][1] = "secret_sauce";
         return data;
     }
 }

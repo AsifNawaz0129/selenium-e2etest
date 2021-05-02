@@ -43,7 +43,9 @@ public class checkURLTest extends base {
     @Test
     public void driverStatusTest() {
         String currentURL= driver.getCurrentUrl();
-        if(currentURL!="https://www.saucedemo.asdasfcom/"){
+        System.out.println("+"+currentURL+"+");
+        String actualUrl=new String("https://www.saucedemo.com/");
+        if(!currentURL.equals(actualUrl)){
             Assert.assertTrue(false);
         }
     } 
