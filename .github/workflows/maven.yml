@@ -8,7 +8,7 @@ env:
 
 on:
   workflow_dispatch:
-    types: do-something
+    types: [do-something]
   # push:
   #   branches: [ master ]
   # pull_request:
