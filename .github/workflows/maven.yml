@@ -8,14 +8,14 @@ env:
 
 on:
   workflow_dispatch:
-    types: [run-ping]
+    types: [do-something]
   push:
     branches: [ master ]
   pull_request:
     branches: [ master ]
 
 jobs:
-  build:
+  do-something:
 
     runs-on: ubuntu-latest
 
