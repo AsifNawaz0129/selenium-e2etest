@@ -9,13 +9,14 @@ env:
 on:
   workflow_dispatch:
     types: [do-something]
-  # push:
-  #   branches: [ master ]
-  # pull_request:
-  #   branches: [ master ]
+  push:
+    branches: [ master ]
+  pull_request:
+    branches: [ master ]
 
 jobs:
   do-something:
+    if: github.event_name == 'do-something'
     runs-on: ubuntu-latest
     steps:
 
