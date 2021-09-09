@@ -35,7 +35,9 @@ jobs:
         aws-region: ${{ secrets.AWS_REGION }}
     - name: Copy APK from the AWS S3
       run: |
+        ls
         aws s3 sync  s3://truth-and-dare-apk-bucket/ /home/runner/work/selenium-e2etest/selenium-e2etest/
+        ls
     - name: Install Google Chrome # Using shell script to install Google Chrome
       run:   |
               chmod +x ./scripts/InstallChrome.sh
