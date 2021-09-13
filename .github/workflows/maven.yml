@@ -36,11 +36,11 @@ jobs:
     - name: Copy APK from the AWS S3
       run: |
         ls
-        aws s3 sync  s3://truth-and-dare-apk-bucket/app-release.apk /home/runner/work/selenium-e2etest/selenium-e2etest/app-release.apk
+        aws s3 sync  s3://truth-and-dare-apk-bucket/app-debug.apk /home/runner/work/selenium-e2etest/selenium-e2etest/app-debug.apk
         ls
     - name: Install Google Chrome # Using shell script to install Google Chrome
       run:   |
-              chmod +x ./scripts/InstallChrome.sh
-                          ./scripts/InstallChrome.sh 
+        chmod +x ./scripts/InstallChrome.sh
+        ./scripts/InstallChrome.sh 
     - name: Build with Maven
       run: mvn test --file pom.xml
