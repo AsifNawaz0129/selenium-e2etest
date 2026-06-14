@@ -80,10 +80,11 @@ public class HomePage extends base {
     }
 
     @Test(dependsOnMethods = { "verifySortingAscending" })
-    public void logoutTest() {
+    public void logoutTest() throws InterruptedException {
         MainPage mainPage = new MainPage(driver);
+        Thread.sleep(1000);
         mainPage.getSideNavbarButton().click();
-        getExplicitWait(5).until(ExpectedConditions.elementToBeClickable(mainPage.getLogoutButton())).click();
+        getExplicitWait(10).until(ExpectedConditions.elementToBeClickable(mainPage.getLogoutButton())).click();
     }
 
     @AfterClass

@@ -49,6 +49,7 @@ public class base {
             // Initialize IE browser
             driver = new InternetExplorerDriver();
         }
+        driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
         return driver;
     }
 
