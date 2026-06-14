@@ -1,8 +1,9 @@
 package pageObjects;
 
-import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.FindBy;
+import org.openqa.selenium.support.PageFactory;
 
 public class LandingPage {
 
@@ -10,21 +11,26 @@ public class LandingPage {
     
     public LandingPage(WebDriver driver){
         this.driver= driver;
+        PageFactory.initElements(driver, this);
     }
 
-    By loginButton = By.cssSelector("input[type='submit']");
-    By usernameField = By.cssSelector("input[id='user-name']");
-    By passField = By.cssSelector("input[id='password']");
+    @FindBy(css = "input[type='submit']")
+    WebElement loginButton;
 
-    public  MainPage getLoginButton() {
-        driver.findElement(loginButton).click();
-        MainPage mainPage = new MainPage(driver);
-        return mainPage;
+    @FindBy(css = "input[id='user-name']")
+    WebElement usernameField;
+
+    @FindBy(css = "input[id='password']")
+    WebElement passField;
+
+    public MainPage getLoginButton() {
+        loginButton.click();
+        return new MainPage(driver);
     }
     public WebElement getusernameField(){
-        return driver.findElement(usernameField);
+        return usernameField;
     }
     public WebElement getpassField(){
-        return driver.findElement(passField);
+        return passField;
     }
 }

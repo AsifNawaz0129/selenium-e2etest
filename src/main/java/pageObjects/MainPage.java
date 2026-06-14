@@ -3,9 +3,10 @@ package pageObjects;
 import java.util.ArrayList;
 import java.util.List;
 
-import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.FindBy;
+import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.Select;
 
 public class MainPage {
@@ -14,39 +15,51 @@ public class MainPage {
 
     public MainPage(WebDriver driver){
         this.driver=driver;
+        PageFactory.initElements(driver, this);
     }
     
-    By sideNavButton = By.cssSelector("#react-burger-menu-btn");
-    By sideNavItems = By.cssSelector("#logout_sidebar_link");
-    By inventoryNameList = By.xpath("//div[@class='inventory_item']/div[2]/a/div");
-    By inventoryAddbuttonList = By.xpath("//div[@class='inventory_item']/div[2]/div[2]/button");
-    By sortDropdown = By.cssSelector(".product_sort_container");
-    By cartIcon = By.cssSelector("#shopping_cart_container");
+    @FindBy(css = "#react-burger-menu-btn")
+    WebElement sideNavButton;
+
+    @FindBy(css = "#logout_sidebar_link")
+    WebElement sideNavItems;
+
+    @FindBy(xpath = "//div[@class='inventory_item']/div[2]/a/div")
+    List<WebElement> inventoryNameList;
+
+    @FindBy(xpath = "//div[@class='inventory_item']/div[2]/div[2]/button")
+    List<WebElement> inventoryAddbuttonList;
+
+    @FindBy(css = ".product_sort_container")
+    WebElement sortDropdown;
+
+    @FindBy(css = "#shopping_cart_container")
+    WebElement cartIcon;
 
     public CartPage clickCartIcon(){
-        driver.findElement(cartIcon).click();
+        cartIcon.click();
         CartPage cartPage = new CartPage(driver);
         return cartPage;
     }
     
     public WebElement getSideNavbarButton(){
-        return driver.findElement(sideNavButton);
+        return sideNavButton;
     }
 
-    public  WebElement getLogoutButton(){
-        return driver.findElement(sideNavItems);
+    public WebElement getLogoutButton(){
+        return sideNavItems;
     }
 
-    public  List<WebElement> getInventoryItems(){
-        return driver.findElements(inventoryNameList);
+    public List<WebElement> getInventoryItems(){
+        return inventoryNameList;
     }
 
-    public  List<WebElement> getInventoryAddButtons(){
-        return driver.findElements(inventoryAddbuttonList);
+    public List<WebElement> getInventoryAddButtons(){
+        return inventoryAddbuttonList;
     }
 
     public Select getsortDropdown(){
-        Select dropdownSort = new  Select( driver.findElement(sortDropdown));
+        Select dropdownSort = new Select(sortDropdown);
         return dropdownSort;
     }
 
@@ -58,7 +71,7 @@ public class MainPage {
         getsortDropdown().selectByValue("az");
     }
 
-    public   ArrayList<String> getLabels(){
+    public ArrayList<String> getLabels(){
         ArrayList<String> inventoryLabels = new ArrayList<String>();
         for(int x=0; getInventoryItems().size()>x ; x++){
             inventoryLabels.add(getInventoryItems().get(x).getText());

@@ -15,6 +15,7 @@ import org.testng.annotations.BeforeClass;
 import org.testng.annotations.BeforeTest;
 import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
+import org.openqa.selenium.support.ui.ExpectedConditions;
 import pageObjects.LandingPage;
 import pageObjects.MainPage;
 import resources.base;
@@ -38,7 +39,7 @@ public class HomePage extends base {
     }
 
     @Test(dataProvider = "CredentialProvider")
-    public void loginTest(String user, String pass) throws InterruptedException, SQLException {
+    public void loginTest(String user, String pass) throws SQLException {
         LandingPage landingPage = new LandingPage(driver);
         landingPage.getusernameField().sendKeys(user);
         landingPage.getpassField().sendKeys(pass);
@@ -47,7 +48,7 @@ public class HomePage extends base {
     }
 
     @Test(dependsOnMethods = { "loginTest" })
-    public void verifySortingDescending() throws InterruptedException {
+    public void verifySortingDescending() {
         Assert.assertTrue(mainpage.getSideNavbarButton().isDisplayed());
         ArrayList<String> reversedInventoryItems = mainpage.getLabels();
         Collections.sort(reversedInventoryItems, Collections.reverseOrder());
@@ -63,7 +64,7 @@ public class HomePage extends base {
     }
 
     @Test(dependsOnMethods = { "verifySortingDescending" })
-    public void verifySortingAscending() throws InterruptedException {
+    public void verifySortingAscending() {
         MainPage mainPage = new MainPage(driver);
         ArrayList<String> ascendingInventoryItems = mainPage.getLabels();
         Collections.sort(ascendingInventoryItems);
@@ -79,10 +80,10 @@ public class HomePage extends base {
     }
 
     @Test(dependsOnMethods = { "verifySortingAscending" })
-    public void logoutTest() throws InterruptedException {
+    public void logoutTest() {
         MainPage mainPage = new MainPage(driver);
         mainPage.getSideNavbarButton().click();
-        mainPage.getLogoutButton().click();
+        getExplicitWait(5).until(ExpectedConditions.elementToBeClickable(mainPage.getLogoutButton())).click();
     }
 
     @AfterClass

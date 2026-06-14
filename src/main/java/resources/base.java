@@ -4,7 +4,7 @@ import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.util.Properties;
-import java.util.concurrent.TimeUnit;
+import java.time.Duration;
 
 import org.apache.commons.io.FileUtils;
 import org.openqa.selenium.OutputType;
@@ -14,8 +14,7 @@ import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.ie.InternetExplorerDriver;
-
-import io.github.bonigarcia.wdm.WebDriverManager;
+import org.openqa.selenium.support.ui.WebDriverWait;
 
 /**
  * base
@@ -38,7 +37,6 @@ public class base {
 
         if (browserName.equals("chrome")) {
             // Initialize chrome browser
-            WebDriverManager.chromedriver().setup();
             ChromeOptions options = new ChromeOptions();
             options.addArguments("--no-sandbox");
             options.addArguments("--disable-dev-shm-usage");
@@ -51,9 +49,11 @@ public class base {
             // Initialize IE browser
             driver = new InternetExplorerDriver();
         }
-        // Implicit wait
-        driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
         return driver;
+    }
+
+    public WebDriverWait getExplicitWait(int seconds) {
+        return new WebDriverWait(driver, Duration.ofSeconds(seconds));
     }
 
     public String getScreenshot(String testName, WebDriver driver) throws IOException {

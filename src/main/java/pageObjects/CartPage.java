@@ -1,30 +1,30 @@
 package pageObjects;
 
-import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.FindBy;
+import org.openqa.selenium.support.PageFactory;
 import java.util.List;
-
 
 public class CartPage {
 	public WebDriver driver;
 
     public CartPage(WebDriver driver){
         this.driver=driver;
+        PageFactory.initElements(driver, this);
     }
     
-    By getCartitems = By.cssSelector(".cart_item");
-    By getContinueShoppingButton= By.cssSelector("button[name='continue-shopping']");
+    @FindBy(css = ".cart_item")
+    List<WebElement> cartItems;
+
+    @FindBy(css = "button[name='continue-shopping']")
+    WebElement continueShoppingButton;
     
     public int getSideNavbarButton(){
-        List<WebElement> cartItems=driver.findElements(getCartitems);
-        int cartItemsNumber=cartItems.size();
-        return cartItemsNumber;
+        return cartItems.size();
     }
     
     public WebElement getShoppingButton(){       
-        return driver.findElement(getContinueShoppingButton);
+        return continueShoppingButton;
     }
-
-
 }

@@ -22,10 +22,9 @@ public class checkURLTest extends base {
     CartPage cartPage;
 
     @BeforeTest
-	public void createDirectorySetup() throws IOException, InterruptedException
+	public void createDirectorySetup() throws IOException
 	{
 	//taskkill /F /IM node.exe
-		Thread.sleep(3000);
         createDirectory("screenshot");
 	}
 

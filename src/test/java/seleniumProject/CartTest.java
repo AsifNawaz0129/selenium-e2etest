@@ -37,7 +37,7 @@ public class CartTest extends base {
     }
 
     @Test(dataProvider = "CredentialProvider")
-    public void cartAddingTest(final String user, final String pass) throws InterruptedException, SQLException {
+    public void cartAddingTest(final String user, final String pass) throws SQLException {
         final LandingPage landingPage = new LandingPage(driver);
         landingPage.getusernameField().sendKeys(user);
         landingPage.getpassField().sendKeys(pass);
