@@ -8,8 +8,8 @@ import org.apache.logging.log4j.Logger;
 import org.openqa.selenium.WebDriver;
 //import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
-import org.testng.annotations.AfterTest;
-import org.testng.annotations.BeforeTest;
+import org.testng.annotations.AfterClass;
+import org.testng.annotations.BeforeClass;
 import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
 
@@ -25,7 +25,7 @@ public class CartTest extends base {
     public WebDriver driver;
     CartPage cartPage;
 
-    @BeforeTest
+    @BeforeClass
     public void initializeDriver() throws IOException {
         System.out.println(base.class.getName());
         driver = initalizeDriver();
@@ -44,9 +44,13 @@ public class CartTest extends base {
         final MainPage mainpage = landingPage.getLoginButton();
         logger.info("logging in");
         // Add first two items two carts
+        getExplicitWait(10).until(org.openqa.selenium.support.ui.ExpectedConditions.visibilityOfAllElements(mainpage.getInventoryAddButtons()));
         final List<WebElement> addButtons = mainpage.getInventoryAddButtons();
-        addButtons.get(0).click();
-        addButtons.get(1).click();
+        getExplicitWait(10).until(org.openqa.selenium.support.ui.ExpectedConditions.elementToBeClickable(addButtons.get(0))).click();
+        getExplicitWait(10).until(org.openqa.selenium.support.ui.ExpectedConditions.elementToBeClickable(addButtons.get(1))).click();
+        // Wait for cart badge
+        getExplicitWait(10).until(org.openqa.selenium.support.ui.ExpectedConditions.presenceOfElementLocated(org.openqa.selenium.By.cssSelector(".shopping_cart_badge")));
+        
         //tap on cart Icon
         cartPage = mainpage.clickCartIcon();
         // Wait for elements
@@ -65,7 +69,7 @@ public class CartTest extends base {
     
     
 
-    @AfterTest
+    @AfterClass
     public void quitTest() throws IOException {
     	//closing driver
         driver.close();
