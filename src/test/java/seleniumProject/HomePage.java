@@ -82,8 +82,9 @@ public class HomePage extends base {
     @Test(dependsOnMethods = { "verifySortingAscending" })
     public void logoutTest() throws InterruptedException {
         MainPage mainPage = new MainPage(driver);
-        Thread.sleep(1000);
-        mainPage.getSideNavbarButton().click();
+        getExplicitWait(10).until(ExpectedConditions.presenceOfElementLocated(org.openqa.selenium.By.cssSelector("#react-burger-menu-btn")));
+        ((org.openqa.selenium.JavascriptExecutor) driver).executeScript("arguments[0].click();", mainPage.getSideNavbarButton());
+        getExplicitWait(10).until(ExpectedConditions.visibilityOf(mainPage.getLogoutButton()));
         getExplicitWait(10).until(ExpectedConditions.elementToBeClickable(mainPage.getLogoutButton())).click();
     }
 
