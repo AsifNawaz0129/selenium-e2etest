@@ -49,6 +49,8 @@ public class CartTest extends base {
         addButtons.get(1).click();
         //tap on cart Icon
         cartPage = mainpage.clickCartIcon();
+        // Wait for elements
+        getExplicitWait(10).until(org.openqa.selenium.support.ui.ExpectedConditions.numberOfElementsToBe(org.openqa.selenium.By.cssSelector(".cart_item"), 2));
         //verify two items in cart
         int cartItemsNumbers = cartPage.getSideNavbarButton();
         if(cartItemsNumbers==2) {
